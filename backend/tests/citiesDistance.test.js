@@ -30,3 +30,7 @@ test('Fail if number not provided', () => {
 test('Fail if latitude of the first city is missing', () => {
     expect(getCitiesDirections(13.8481,45.6433,13.7903).toThrow());
 });
+
+test('Fail if longitude of the first city is missing', () => {
+    expect(getCitiesDirections(44.8683,45.6433,13.7903).toThrow());
+});
