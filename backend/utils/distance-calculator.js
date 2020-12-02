@@ -4,11 +4,15 @@ function distance(lat1, lon1, lat2, lon2) {
 	}
 
 	if (lat1 === null || lon1 === null || lat2 === null || lon2 === null) {
-		return null;
+		throw new Error('Value of latitude or longitude must not be null');
+	}
+
+	if (lat1 === undefined || lon1 === undefined || lat2 === undefined || lon2 === undefined) {
+		throw new Error('Value of latitude or longitude must not be undefined');
 	}
 
 	if (typeof lat1 !== 'number' || typeof lon1 !== 'number' || typeof lat2 !== 'number' || typeof lon2 !== 'number') {
-		return false;
+		throw new Error('Some of the values provided are not numbers');
 	}
     
 	else {

@@ -18,29 +18,29 @@ test('Should return distance between Zagreb and Sydney', () => {
 });
 
 test('Fail if first cities coordinates are null', () => {
-    expect(distance(null, null, 3, 2)).toBeNull();
+    expect(() => distance(null,null,1,2)).toThrow('Value of latitude or longitude must not be null');
 });
 
 test('Fail if second cities coordinates are null', () => {
-    expect(distance(4, 3, null, null)).toBeNull();
+    expect(() => distance(1,2,null,null)).toThrow('Value of latitude or longitude must not be null');
 });
 
 test('Fail if undefined provided', () => {
-    expect(distance(undefined)).toBe(0);
+    expect(() => distance(undefined, 2, 3, 5)).toThrow('Value of latitude or longitude must not be undefined');
 });
 
 test('Fail if string provided', () => {
-    expect(distance('hello', 'a', 'b', 'd')).toBeFalsy();
+    expect(() => distance('hello', 'a', 'b', 'd')).toThrow('Some of the values provided are not numbers');
 });
 
 test('Fail if object provided', () => {
-    expect(distance({})).toBeFalsy();
+    expect(() => distance({})).toThrow('Value of latitude or longitude must not be undefined');
 });
 
 test('Fail if latitude is missing', () => {
-    expect(distance(13.8481,45.6433,13.7903)).toBeFalsy();
+    expect(() => distance(13.8481,45.6433,13.7903)).toThrow();
 });
 
 test('Fail if longitude is missing', () => {
-    expect(distance(44.8683,45.6433,13.7903)).toBeFalsy();
+    expect(() => distance(44.8683,45.6433,13.7903)).toThrow();
 });
