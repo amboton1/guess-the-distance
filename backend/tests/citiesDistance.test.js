@@ -1,44 +1,42 @@
 
+const { distance } = require('../utils/distance-calculator');
+
 test('Should return distance between Pula and Virovitica', () => {
-    expect(getCitiesDirections(44.8683,13.8481,45.8319,17.3839).toEqual(296));
+    expect(distance(44.8683,13.8481,45.8319,17.3839)).toEqual(296);
 });
 
 test('Should return distance between Zagreb and Berlin', () => {
-    expect(getCitiesDirections(45.8144,15.978,52.5244,13.4105).toEqual(769));
+    expect(distance(45.8144,15.978,52.5244,13.4105)).toEqual(769);
 });
 
 test('Should return distance between Pula and Trieste', () => {
-    expect(getCitiesDirections(44.8683,13.8481,45.6433,13.7903).toEqual(86));
+    expect(distance(44.8683,13.8481,45.6433,13.7903)).toEqual(86);
+});
+
+test('Should return distance between Zagreb and Sydney', () => {
+    expect(distance(45.8144, 15.978,-33.8679, 151.2073)).toEqual(16027);
 });
 
 test('Fail if null values are provided', () => {
-    expect(getCitiesDirections(null).toBeNull());
-});
-
-test('Fail if empty string provided', () => {
-    expect(getCitiesDirections('').toBeFalsy());
+    expect(distance(null)).toBe(0);
 });
 
 test('Fail if undefined provided', () => {
-    expect(getCitiesDirections(undefined).toBeUndefined());
-});
-
-test('Fail if coordinate is negative', () => {
-    expect(getCitiesDirections(-44.8683,13.8481,45.6433,13.7903).toThrow())
+    expect(distance(undefined)).toBe(0);
 });
 
 test('Fail if string provided', () => {
-    expect(getCitiesDirections('hello').toThrow());
+    expect(distance('hello')).toBe(NaN);
 });
 
 test('Fail if object provided', () => {
-    expect(getCitiesDirections({}).toThrow());
+    expect(distance({})).toBe(NaN);
 });
 
 test('Fail if latitude is missing', () => {
-    expect(getCitiesDirections(13.8481,45.6433,13.7903).toThrow());
+    expect(distance(13.8481,45.6433,13.7903)).toBe(NaN);
 });
 
 test('Fail if longitude is missing', () => {
-    expect(getCitiesDirections(44.8683,45.6433,13.7903).toThrow());
+    expect(distance(44.8683,45.6433,13.7903)).toBe(NaN);
 });
