@@ -2,6 +2,14 @@ function distance(lat1, lon1, lat2, lon2) {
 	if ((lat1 == lat2) && (lon1 == lon2)) {
 		return 0;
 	}
+
+	if (lat1 === null || lon1 === null || lat2 === null || lon2 === null) {
+		return null;
+	}
+
+	if (typeof lat1 !== 'number' || typeof lon1 !== 'number' || typeof lat2 !== 'number' || typeof lon2 !== 'number') {
+		return false;
+	}
     
 	else {
 		var radlat1 = Math.PI * lat1/180;
@@ -19,7 +27,5 @@ function distance(lat1, lon1, lat2, lon2) {
 		return dist;
 	}
 }
-
-console.log(distance(5,4,2));
 
 module.exports = {distance};
